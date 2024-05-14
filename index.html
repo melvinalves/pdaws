@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualizar Produtos</title>
+</head>
+<body>
+  <h1>Produtos</h1>
+  <div id="productData"></div>
+
+  <script>
+    fetch('https://5al95rx7kj.execute-api.us-east-1.amazonaws.com/stage1/produtos')
+      .then(response => response.json())
+      .then(data => {
+        const productData = document.getElementById('productData');
+        productData.innerHTML = JSON.stringify(data, null, 2);
+      })
+      .catch(error => {
+        console.error('Erro ao carregar produtos:', error);
+        document.getElementById('productData').innerText = 'Erro ao carregar produtos.';
+      });
+  </script>
+</body>
+</html>
